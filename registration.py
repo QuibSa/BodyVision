@@ -55,21 +55,22 @@ def about_us():
     )
     # Load and display contributor images
     st.title("Meet the Team")
-    contributor1_img = Image.open("contributor1.jpg")
-    contributor2_img = Image.open("contributor2.jpg")
-    contributor3_img = Image.open("contributor3.jpg")
-    contributor4_img = Image.open("contributor4.jpg")
+    contributor1_img = Image.open("contributor3.jpg")
+    contributor2_img = Image.open("contributor4.jpg")
+    contributor3_img = Image.open("contributor1.jpg")
+    contributor4_img = Image.open("contributor2.jpg")
     img_width = contributor1_img.width
 
     col1, col2, col3, col4 = st.columns(4)
     with col1:
-        st.image(contributor1_img, caption="Name-Akash Varma(E22CSEU0333)", use_column_width=True)
+        st.image(contributor1_img, caption="Name- SAQUIB HUSSAIN(E22CSEU0341)", use_column_width=True)
     with col2:
-        st.image(contributor2_img, caption="Name- Teja Kiran (E22CSEU0345)", use_column_width=True)
+        st.image(contributor2_img, caption="Name- Kausik Varma(E22CSEU0343)", use_column_width=True)
     with col3:
-        st.image(contributor3_img, caption="Name- SAQUIB HUSSAIN(E22CSEU0341)", use_column_width=True)
+        st.image(contributor3_img, caption="Name-Akash Varma(E22CSEU0333)", use_column_width=True)
     with col4:
-        st.image(contributor4_img, caption="Name- Kausik Varma(E22CSEU0343)", use_column_width=True) 
+        st.image(contributor4_img, caption="Name- Teja Kiran (E22CSEU0345)", use_column_width=True) 
+
 
 def deduce_shirt_size(width_cm, height_cm):
     size_chart = {
@@ -141,7 +142,28 @@ def pixels_to_cm(pixels, reference_length_pixels, reference_length_cm):
     # Convert pixels to centimeters
     length_cm = pixels * conversion_factor
     return length_cm
+def add_custom_css(css):
+    st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
 
+# Function to set custom background with color gradient
+def set_background_color():
+    custom_css = """
+    body {
+        background: linear-gradient(to right, #ff7e5f, #feb47b); /* Gradient colors */
+        color: blue; /* Set text color to white */
+        font-family: 'Courier New', Courier, monospace; /* Custom font */
+    }
+    """
+    add_custom_css(custom_css)
+
+# Function to add a custom banner or heading with color
+def styled_heading(text, color):
+    st.markdown(f"<h1 style='color:{color};'>{text}</h1>", unsafe_allow_html=True)
+
+# Function to add colored text with optional background
+def colored_text(text, text_color, bg_color=None):
+    bg_style = f"background-color:{bg_color};" if bg_color else ""
+    st.markdown(f"<span style='color:{text_color}; {bg_style}'>{text}</span>", unsafe_allow_html=True)
 # Streamlit UI
 def main():
     st.set_page_config(
@@ -150,7 +172,8 @@ def main():
         layout="wide"
     )
 
-    st.title("Welcome to BodyVision")
+    st.title("Welcome to BodyVision :shirt:")
+    set_background_color()  # Set the gradient background
 
     conn = sqlite3.connect('data.db')
     c = conn.cursor()
